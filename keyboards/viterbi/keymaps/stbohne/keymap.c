@@ -1,6 +1,10 @@
 #include "viterbi.h"
 #include "action_layer.h"
 #include "eeconfig.h"
+#include "analog.h"
+#include "pointing_device.h"
+#include "print.h"
+#include "split_util.h"
 
 extern keymap_config_t keymap_config;
 
@@ -28,18 +32,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          ,LSFT, Z  , X  , C  , V  , B  ,      N  , M  ,COMM,DOT ,SLSH,RSFT,LEAD,
   //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
      HYPR,LCTL,FN1 ,LGUI,LALT,SPC ,SPC ,     ENT ,ENT ,RALT,APP ,FN1 ,RCTL,HYPR
-  //`----+----+----+----+----+----+----'    `----+----+----+----+----+----+----'
+  //`----+----+----+----+----+----+----'    `----+f----+----+----+----+----+----'
   ),
 
   [_FN1] = LAYOUT_kc(
   //,----+----+----+----+----+----+----.    ,----+----+----+----+----+----+----.
      PWR ,SLEP, F1 , F2 , F3 , F4 , F5 ,      F6 , F7 , F8 , F9 ,F10 ,F11 ,F12 ,
   //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
-         ,    ,    ,MUTE,VOLU,VOLD,    ,     PGUP,HOME, UP ,END ,    ,    ,    ,
+         ,    ,    ,    ,    ,BTN2,VOLU,     PGUP,HOME, UP ,END ,    ,    ,    ,
   //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
-         ,    ,MPRV,MNXT,MSTP,MPLY,    ,     PGDN,LEFT,DOWN,RGHT,INS ,CALC,    ,
+         ,MPRV,MNXT,MSTP,MPLY,BTN1,VOLD,     PGDN,LEFT,DOWN,RGHT,INS ,CALC,    ,
   //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
-         ,LSFT,    ,    ,    ,    ,    ,         ,WBAK,WREF,WSTP,WSCH,RSFT,    ,
+         ,LSFT,    ,    ,    ,BTN3,MUTE,         ,WBAK,WREF,WSTP,WSCH,RSFT,    ,
   //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
      HYPR,LCTL,FN1X,LGUI,LALT,    ,    ,         ,    ,RALT,APP ,FN1X,RCTL,HYPR
   //`----+----+----+----+----+----+----'    `----+----+----+----+----+----+----'
@@ -48,6 +52,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 LEADER_EXTERNS();
 
+static int16_t center_x = -6;
+static int16_t center_y = -10;
+
+void matrix_init_user(void) {
+  //center_x = analogRead(4);
+  //center_y = analogRead(2);
+}
 void matrix_scan_user(void) {
   LEADER_DICTIONARY() {
     leading = false;
@@ -66,4 +77,18 @@ void matrix_scan_user(void) {
       send_unicode_hex_string("03B1");
     }
   }
+
+  report_mouse_t rm = pointing_device_get_report();
+  int16_t x = analogRead(4) - center_x - 512;
+  int16_t y = analogRead(2) - center_y - 512;
+  x = (int32_t)x * 127l / (512l - (center_x * (x >= 0 ? 1 : -1)));
+  y = (int32_t)y * 127l / (512l - (center_y * (y >= 0 ? 1 : -1)));
+  if (isLeftHand) {
+    rm.h = -x / 128;
+    rm.v = y / 128;
+  } else {
+    rm.x = -x / 16;
+    rm.y = y / 16;
+  }
+  pointing_device_set_report(rm);
 }
