@@ -34,7 +34,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // wiring of each half
 #define MATRIX_ROW_PINS { D4, D7, E6, B4, B5 }
-#define MATRIX_COL_PINS { F5, F6, F7, B1, B3, B2, B6 }
+#define MATRIX_COL_PINS { C6, D3, F7, B1, B3, B2, B6 }
 #define SOFT_SERIAL_PIN D0
 
 /* COL2ROW or ROW2COL */
@@ -51,3 +51,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* ws2812 RGB LED */
 #define RGB_DI_PIN D3
 #define RGBLED_NUM 14
+
+/* handedness */
+#define EE_HANDS

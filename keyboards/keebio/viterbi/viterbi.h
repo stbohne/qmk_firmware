@@ -4,8 +4,12 @@
 
 #ifdef KEYBOARD_keebio_viterbi_rev1
     #include "rev1.h"
+#elif KEYBOARD_keebio_viterbi_rev1_stbohne
+    #include "rev1_stbohne.h"
 #elif KEYBOARD_keebio_viterbi_rev2
     #include "rev2.h"
+#else
+	#error undefined keyboard revision
 #endif
 
 // Used to create a keymap using only KC_ prefixed keys
