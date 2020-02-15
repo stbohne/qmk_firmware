@@ -57,11 +57,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,----+----+----+----+----+----+----.    ,----+----+----+----+----+----+----.
      PWR ,SLEP, F1 , F2 , F3 , F4 , F5 ,      F6 , F7 , F8 , F9 ,F10 ,F11 ,F12 ,
   //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
-     COLE,QWER,    ,    ,    ,BTN2,VOLU,     PGUP,HOME, UP ,END ,    ,    ,    ,
+     COLE,    ,    ,BTN2,MS_U,BTN1,VOLU,     PGUP,HOME, UP ,END ,WSCH,    ,    ,
   //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
-         ,MPRV,MNXT,MSTP,MPLY,BTN1,VOLD,     PGDN,LEFT,DOWN,RGHT,INS ,CALC,    ,
+     QWER,    ,BTN3,MS_L,MS_D,MS_R,VOLD,     PGDN,LEFT,DOWN,RGHT,INS ,CALC,    ,
   //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
-         ,LSFT,    ,    ,    ,BTN3,MUTE,         ,WBAK,WREF,WSTP,WSCH,RSFT,    ,
+         ,LSFT,    ,    ,    ,    ,MUTE,         ,ACL2,ACL1,ACL0,    ,RSFT,    ,
   //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
      HYPR,LCTL,FN1X,LGUI,LALT,    ,    ,         ,    ,RALT,APP ,FN1X,RCTL,HYPR
   //`----+----+----+----+----+----+----'    `----+----+----+----+----+----+----'
