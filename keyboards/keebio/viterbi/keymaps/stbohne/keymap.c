@@ -15,10 +15,13 @@ extern keymap_config_t keymap_config;
 #define _COLEMAK 1
 #define _QWERTY 0
 #define _FN1 2
+#define _FN2 3
 
 #define KC_ KC_NO
 #define KC_FN1 (TT(_FN1))
 #define KC_FN1X (MO(_FN1))
+#define KC_FN2 (TT(_FN2))
+#define KC_FN2X (MO(_FN2))
 #define KC_COLE (DF(_COLEMAK))
 #define KC_QWER (DF(_QWERTY))
 #define KC_SH SH_TT
@@ -35,7 +38,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
          ,LSFT, Z  , X  , C  , D  , V  ,      M  , H  ,COMM,DOT ,SLSH,RSFT,    ,
   //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
-     HYPR,LCTL,FN1 ,LGUI,LALT,SPC ,SPC ,     ENT ,ENT ,RALT,APP ,FN1 ,RCTL,HYPR
+         ,LCTL,FN1 ,LGUI,LALT,FN2 ,SPC ,     ENT ,FN2 ,RALT,APP ,FN1 ,RCTL,    
   //`----+----+----+----+----+----+----'    `----+----+----+----+----+----+----'
   ),
 
@@ -47,9 +50,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
      DEL ,BSPC, A  , S  , D  , F  , G  ,      H  , J  , K  , L  ,SCLN,QUOT,BSLS,
   //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
-         ,LSFT, Z  , X  , C  , V  , B  ,      N  , M  ,COMM,DOT ,SLSH,RSFT,LEAD,
+         ,LSFT, Z  , X  , C  , V  , B  ,      N  , M  ,COMM,DOT ,SLSH,RSFT,    ,
   //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
-     HYPR,LCTL,FN1 ,LGUI,LALT,SPC ,SPC ,     ENT ,ENT ,RALT,APP ,FN1 ,RCTL,HYPR
+         ,LCTL,FN1 ,LGUI,LALT,FN2 ,SPC ,     ENT ,FN2 ,RALT,APP ,FN1 ,RCTL,     
   //`----+----+----+----+----+----+----'    `----+----+----+----+----+----+----'
   ),
 
@@ -63,7 +66,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
          ,LSFT,    ,MUTE,VOLD,VOLU,    ,         ,ACL2,ACL1,ACL0,    ,RSFT,    ,
   //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
-      SH ,LCTL,FN1X,LGUI,LALT,    ,    ,         ,    ,RALT,APP ,FN1X,RCTL, SH 
+         ,LCTL,FN1X,LGUI,LALT,FN2X,    ,         ,FN2X,RALT,APP ,FN1X,RCTL,    
+  //`----+----+----+----+----+----+----'    `----+----+----+----+----+----+----'
+  ),
+
+  [_FN2] = LAYOUT_kc(
+  //,----+----+----+----+----+----+----.    ,----+----+----+----+----+----+----.
+         ,    ,    ,    ,    ,    ,    ,         ,    ,    ,    ,    ,    ,    ,
+  //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
+         ,GRV , 1  , 2  , 3  , 4  , 5  ,      6  , 7  , 8  , 9  , 0  ,MINS,    ,
+  //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
+         ,TILD,EXLM, AT ,HASH,DLR ,PERC,     CIRC,AMPR,ASTR,LPRN,RPRN,UNDS,    ,
+  //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
+         ,LSFT,PIPE,BSLS,EQL ,PLUS,    ,         ,LBRC,RBRC,LCBR,RCBR,RSFT,    ,
+  //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
+         ,LCTL,FN1X,LGUI,LALT,FN2X,    ,         ,FN2X,RALT,APP ,FN1X,RCTL,    
   //`----+----+----+----+----+----+----'    `----+----+----+----+----+----+----'
   ),
 };
@@ -80,3 +97,34 @@ const keypos_t hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = {
   {{0, 3}, {1, 3}, {2, 3}, {3, 3}, {4, 3}, {5, 3}, {6, 3}},
   {{0, 4}, {1, 4}, {2, 4}, {3, 4}, {4, 4}, {5, 4}, {6, 4}},
 };
+
+static uint16_t alt_tab_timer = 0;
+
+void matrix_scan_user() {
+  if (timer_elapsed(alt_tab_timer) > 1000) {
+    alt_tab_timer = 0;
+    unregister_code(KC_LALT);
+  }
+}
+
+void encoder_update_user(uint8_t index, bool clockwise) {
+  if (index == 0) { /* First encoder */
+    if (IS_LAYER_ON(_FN2))
+      tap_code((clockwise) ? KC_WH_U : KC_WH_D);
+    else if (IS_LAYER_ON(_FN1))
+      tap_code((clockwise) ? KC_LEFT : KC_RIGHT);
+    else 
+      tap_code((clockwise) ? KC_PGUP : KC_PGDN);
+  } else if (index == 1) { /* Second encoder */  
+    if (IS_LAYER_ON(_FN2))
+      tap_code((clockwise) ? KC_VOLU : KC_VOLD);
+    else if (IS_LAYER_ON(_FN1))
+      tap_code((clockwise) ? KC_UP : KC_DOWN);
+    else {
+      if (alt_tab_timer == 0)
+        register_code(KC_LALT);
+      alt_tab_timer = timer_read();
+      tap_code16((clockwise) ? KC_TAB : S(KC_TAB));
+    }
+  }
+}
