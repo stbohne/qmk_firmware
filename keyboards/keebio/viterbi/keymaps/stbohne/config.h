@@ -44,4 +44,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define ENCODERS_PAD_B { F4 }
 #define ENCODER_RESOLUTION 4
 
+#define LSPO_KEYS KC_LSFT, KC_LSFT, KC_QUOT
+#define RSPC_KEYS KC_RSFT, KC_TRNS, KC_QUOT
+#define LCPO_KEYS KC_LCTL, KC_LSFT, KC_BSLS
+#define RCPC_KEYS KC_RCTL, KC_TRNS, KC_BSLS
+
 #endif

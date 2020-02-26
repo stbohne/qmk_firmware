@@ -14,16 +14,21 @@ extern keymap_config_t keymap_config;
 // entirely and just use numbers.
 #define _COLEMAK 1
 #define _QWERTY 0
-#define _FN1 2
-#define _FN2 3
+#define _KYRIA 2
+#define _FN1 3
+#define _FN1K 4
+#define _FN2 5
 
 #define KC_ KC_NO
 #define KC_FN1 (TT(_FN1))
 #define KC_FN1X (MO(_FN1))
+#define KC_FN1K (TT(_FN1K))
+#define KC_FN1L (MO(_FN1K))
 #define KC_FN2 (TT(_FN2))
 #define KC_FN2X (MO(_FN2))
 #define KC_COLE (DF(_COLEMAK))
 #define KC_QWER (DF(_QWERTY))
+#define KC_KYRI (DF(_KYRIA))
 #define KC_SH SH_TT
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -38,7 +43,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
          ,LSFT, Z  , X  , C  , D  , V  ,      M  , H  ,COMM,DOT ,SLSH,RSFT,    ,
   //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
-         ,LCTL,FN1 ,LGUI,LALT,FN2 ,SPC ,     ENT ,FN2 ,RALT,APP ,FN1 ,RCTL,    
+         ,LCTL,FN1 ,LGUI,LALT,FN2 ,SPC ,     ENT ,FN2 ,RALT,APP ,FN1 ,RCTL,
   //`----+----+----+----+----+----+----'    `----+----+----+----+----+----+----'
   ),
 
@@ -52,7 +57,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
          ,LSFT, Z  , X  , C  , V  , B  ,      N  , M  ,COMM,DOT ,SLSH,RSFT,    ,
   //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
-         ,LCTL,FN1 ,LGUI,LALT,FN2 ,SPC ,     ENT ,FN2 ,RALT,APP ,FN1 ,RCTL,     
+         ,LCTL,FN1 ,LGUI,LALT,FN2 ,SPC ,     ENT ,FN2 ,RALT,APP ,FN1 ,RCTL,
+  //`----+----+----+----+----+----+----'    `----+----+----+----+----+----+----'
+  ),
+
+  [_KYRIA] = LAYOUT_kc(
+  //,----+----+----+----+----+----+----.    ,----+----+----+----+----+----+----.
+     ESC ,    ,    ,    ,    ,    ,    ,         ,    ,    ,    ,    ,    ,    ,
+  //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
+         ,GRV , Q  , W  , E  , R  , T  ,      Y  , U  , I  , O  , P  ,EQL ,    ,
+  //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
+     BSPC,LSPO, A  , S  , D  , F  , G  ,      H  , J  , K  , L  ,SCLN,RSPC,DEL ,
+  //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
+         ,LCPO, Z  , X  , C  , V  , B  ,      N  , M  ,COMM,DOT ,SLSH,RCPC,    ,
+  //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
+         ,    ,FN1K,LGUI,LALT,FN2 ,SPC ,     ENT ,FN2 ,RALT,APP ,FN1K,    ,
   //`----+----+----+----+----+----+----'    `----+----+----+----+----+----+----'
   ),
 
@@ -64,9 +83,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
      QWER,    ,BTN3,MS_L,MS_D,MS_R,WH_D,     PGDN,LEFT,DOWN,RGHT,INS ,CALC,    ,
   //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
-         ,LSFT,    ,MUTE,VOLD,VOLU,    ,         ,ACL2,ACL1,ACL0,    ,RSFT,    ,
+     KYRI,LSFT,    ,MUTE,VOLD,VOLU,    ,         ,ACL2,ACL1,ACL0,    ,RSFT,    ,
   //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
-         ,LCTL,FN1X,LGUI,LALT,FN2X,    ,         ,FN2X,RALT,APP ,FN1X,RCTL,    
+         ,    ,FN1X,LGUI,LALT,FN2X,    ,         ,FN2X,RALT,APP ,FN1X,RCTL,
+  //`----+----+----+----+----+----+----'    `----+----+----+----+----+----+----'
+  ),
+
+  [_FN1K] = LAYOUT_kc(
+  //,----+----+----+----+----+----+----.    ,----+----+----+----+----+----+----.
+     PWR ,SLEP, F1 , F2 , F3 , F4 , F5 ,      F6 , F7 , F8 , F9 ,F10 ,F11 ,F12 ,
+  //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
+     COLE,    ,    ,BTN2,MS_U,BTN1,WH_U,     PGUP,HOME, UP ,END ,WSCH,    ,    ,
+  //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
+     QWER,LSFT,BTN3,MS_L,MS_D,MS_R,WH_D,     PGDN,LEFT,DOWN,RGHT,INS ,RSFT,    ,
+  //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
+     KYRI,LCTL,    ,MUTE,VOLD,VOLU,    ,         ,ACL2,ACL1,ACL0,    ,RCTL,    ,
+  //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
+         ,    ,FN1L,LGUI,LALT,FN2X,    ,         ,FN2X,RALT,APP ,FN1L,RCTL,
   //`----+----+----+----+----+----+----'    `----+----+----+----+----+----+----'
   ),
 
@@ -74,13 +107,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,----+----+----+----+----+----+----.    ,----+----+----+----+----+----+----.
          ,    ,    ,    ,    ,    ,    ,         ,    ,    ,    ,    ,    ,    ,
   //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
-         ,GRV , 1  , 2  , 3  , 4  , 5  ,      6  , 7  , 8  , 9  , 0  ,MINS,    ,
+         ,    ,    ,HASH,LBRC,RBRC,CIRC,         , 7  , 8  , 9  ,UNDS,    ,    ,
   //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
-         ,TILD,EXLM, AT ,HASH,DLR ,PERC,     CIRC,AMPR,ASTR,LPRN,RPRN,UNDS,    ,
+         ,LSFT,TAB , AT ,LPRN,RPRN,PERC,     ASTR, 4  , 5  , 6  ,MINS,RSFT,    ,
   //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
-         ,LSFT,PIPE,BSLS,EQL ,PLUS,    ,         ,LBRC,RBRC,LCBR,RCBR,RSFT,    ,
+         ,LCTL,    ,DLR ,LCBR,RCBR,AMPR,      0  , 1  , 2  , 3  ,EXLM,RCTL,    ,
   //|----+----+----+----+----+----+----|    |----+----+----+----+----+----+----|
-         ,LCTL,FN1X,LGUI,LALT,FN2X,    ,         ,FN2X,RALT,APP ,FN1X,RCTL,    
+         ,    ,FN1X,LGUI,LALT,FN2X,    ,         ,FN2X,RALT,APP ,FN1X,    ,
   //`----+----+----+----+----+----+----'    `----+----+----+----+----+----+----'
   ),
 };
@@ -101,7 +134,7 @@ const keypos_t hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = {
 static uint16_t alt_tab_timer = 0;
 
 void matrix_scan_user() {
-  if (timer_elapsed(alt_tab_timer) > 1000) {
+  if (alt_tab_timer != 0 && timer_elapsed(alt_tab_timer) > 1000) {
     alt_tab_timer = 0;
     unregister_code(KC_LALT);
   }
@@ -113,9 +146,9 @@ void encoder_update_user(uint8_t index, bool clockwise) {
       tap_code((clockwise) ? KC_WH_U : KC_WH_D);
     else if (IS_LAYER_ON(_FN1))
       tap_code((clockwise) ? KC_LEFT : KC_RIGHT);
-    else 
+    else
       tap_code((clockwise) ? KC_PGUP : KC_PGDN);
-  } else if (index == 1) { /* Second encoder */  
+  } else if (index == 1) { /* Second encoder */
     if (IS_LAYER_ON(_FN2))
       tap_code((clockwise) ? KC_VOLU : KC_VOLD);
     else if (IS_LAYER_ON(_FN1))
