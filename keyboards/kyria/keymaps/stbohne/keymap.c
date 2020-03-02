@@ -35,7 +35,7 @@ enum layers {
 #define KC_RSMI MT(MOD_RSFT, KC_MINS)
 
 #define KC_RALE LT(_RAISE, KC_LEFT)
-#define KC_ALRI MT(MOD_LALT, KC_RGHT)
+#define KC_LARI MT(MOD_LALT, KC_RGHT)
 #define KC_LOSP LT(_LOWER, KC_SPC)
 #define KC_CAPU MT(MOD_LCTL | MOD_LALT, KC_PGUP)
 #define KC_SCIN MT(MOD_LSFT | MOD_LCTL, KC_INS)
@@ -45,7 +45,7 @@ enum layers {
 #define KC_SCDE MT(MOD_RSFT | MOD_RCTL, KC_DEL)
 #define KC_CAPD MT(MOD_RCTL | MOD_RALT, KC_PGDN)
 #define KC_LOEN LT(_LOWER, KC_ENT)
-#define KC_ALUP MT(MOD_RALT, KC_UP)
+#define KC_RAUP MT(MOD_RALT, KC_UP)
 #define KC_RADN LT(_RAISE, KC_DOWN)
 
 #define KC_LWR MO(_LOWER)
@@ -58,6 +58,7 @@ enum layers {
 #define KC_RCA MT(MOD_RCTL | MOD_RALT, KC_NO)
 #define KC_RSA MT(MOD_RSFT | MOD_RALT, KC_NO)
 #define KC_RSCA MT(MOD_RSFT | MOD_RCTL | MOD_RALT, KC_NO)
+#define KC_LCDE MT(MOD_LCTL, KC_DEL)
 
 #define KC_RTOG RGB_TOG
 #define KC_RSAI RGB_SAI
@@ -78,7 +79,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----+----+----|    |----+----+----+----+----+----+----+----|
      LCES, Z  , X  , C  , V  , B  ,SCIN,MEHO,     MEEN,SCDE, N  , M  ,COMM,DOT ,SLSH,RCBS,
   //`----+----+----+----+----+----+----+----|    |----+----+----+----+----+----+----+----'
-                    LGUI,RALE,ALRI,LOSP,CAPU,     CAPD,LOEN,ALUP,RADN,APP     
+                    LGUI,RALE,LARI,LOSP,CAPU,     CAPD,LOEN,RAUP,RADN,APP
   //               `----+----+----+----+----'    `----+----+----+----+----'
     ),
     [_LOWER] = LAYOUT_kc(
@@ -87,20 +88,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|                        |----+----+----+----+----+----|
      LSGR,EXLM, AT ,HASH,DLR ,PERC,                         CIRC,AMPR,ASTR,LPRN,RPRN,RSMI,
   //|----+----+----+----+----+----+----+----|    |----+----+----+----+----+----+----+----|
-     LCTL,    ,    ,    ,    ,    ,LSC ,LSCA,     RSCA,RSC ,    ,LCBR,RCBR,LBRC,RBRC,RCTL,
+     LCDE,    ,    ,    ,    ,    ,LSC ,LSCA,     RSCA,RSC ,    ,LCBR,RCBR,LBRC,RBRC,RCTL,
   //`----+----+----+----+----+----+----+----|    |----+----+----+----+----+----+----+----'
-                    LGUI,RAIS,LALT,    ,LCA ,     RCA ,    ,RALT,RAIS,APP    
+                    LGUI,RAIS,LALT,    ,LCA ,     RCA ,    ,RALT,RAIS,APP
   //               `----+----+----+----+----'    `----+----+----+----+----'
     ),
     [_RAISE] = LAYOUT_kc(
   //,----+----+----+----+----+----.                        ,----+----+----+----+----+----.
          ,    ,BTN2,MS_U,BTN1,WH_U,                         PGUP,HOME, UP ,END ,    ,    ,
   //|----+----+----+----+----+----|                        |----+----+----+----+----+----|
-     LSFT,BTN3,MS_L,MS_D,MS_R,WH_D,                         PGDN,LEFT,DOWN,RGHT,    ,RSFT, 
+     LSFT,BTN3,MS_L,MS_D,MS_R,WH_D,                         PGDN,LEFT,DOWN,RGHT,    ,RSFT,
   //|----+----+----+----+----+----+----+----|    |----+----+----+----+----+----+----+----|
      LCTL,    ,    ,    ,    ,    ,LSC ,LSCA,     RSCA,RSC ,    ,ACL2,ACL1,ACL0,    ,RCTL,
   //`----+----+----+----+----+----+----+----|    |----+----+----+----+----+----+----+----'
-                    LGUI,    ,LALT,LWR ,LCA ,     RCA ,LWR ,RALT,    ,APP 
+                    LGUI,    ,LALT,LWR ,LCA ,     RCA ,LWR ,RALT,    ,APP
   //               `----+----+----+----+----'    `----+----+----+----+----'
     ),
     [_ADJUST] = LAYOUT_kc(
@@ -111,7 +112,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----+----+----|    |----+----+----+----+----+----+----+----|
      LCTL,    ,RSAD,RHUD,RVAD,RRMD,LSC ,LSCA,     RSCA,RSC ,    ,    ,    ,    ,    ,RCTL,
   //`----+----+----+----+----+----+----+----|    |----+----+----+----+----+----+----+----'
-                    LGUI,    ,LALT,    ,LCA ,     RCA ,    ,RAIS,    ,APP 
+                    LGUI,    ,LALT,    ,LCA ,     RCA ,    ,RAIS,    ,APP
   //               `----+----+----+----+----'    `----+----+----+----+----'
     ),
 };
@@ -140,18 +141,18 @@ static void render_layout_left(void) {
         case _LOWER:
             oled_write_P(PSTR("~  1 2 3 4 5 \n"), false);
             oled_write_P(PSTR("`  ! @ # $ % \n"), false);
-            oled_write_P(PSTR("                 \n"), false);
+            oled_write_P(PSTR("Del              \n"), false);
             oled_write_P(PSTR("       Wi        "), false);
             break;
         case _RAISE:
             oled_write_P(PSTR("     M2MUM1WU\n"), false);
-            oled_write_P(PSTR("   TgMLMDMRWD\n"), false);
+            oled_write_P(PSTR("   M3MLMDMRWD\n"), false);
             oled_write_P(PSTR("                 \n"), false);
             oled_write_P(PSTR("       Wi        "), false);
             break;
         case _ADJUST:
             oled_write_P(PSTR("F1 F2F3F4F5F6\n"), false);
-            oled_write_P(PSTR("     SaHuVaMd\n"), false);
+            oled_write_P(PSTR("   TgSaHuVaMd\n"), false);
             oled_write_P(PSTR("     SaHuVaMd    \n"), false);
             oled_write_P(PSTR("       Wi        "), false);
             break;
