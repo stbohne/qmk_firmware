@@ -145,7 +145,7 @@ static void render_layout_left(void) {
             break;
         case _RAISE:
             oled_write_P(PSTR("     M2MUM1WU\n"), false);
-            oled_write_P(PSTR("   TgMLMDMRWD\n"), false);
+            oled_write_P(PSTR("   M3MLMDMRWD\n"), false);
             oled_write_P(PSTR("                 \n"), false);
             oled_write_P(PSTR("       Wi        "), false);
             break;
