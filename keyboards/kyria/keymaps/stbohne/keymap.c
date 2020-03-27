@@ -30,6 +30,8 @@ enum layers {
 #define KC_RSQU MT(MOD_RSFT, KC_QUOT)
 #define KC_LCES MT(MOD_LCTL, KC_ESC)
 #define KC_RCBS MT(MOD_RCTL, KC_BSLS)
+#define KC_SHTA SH_T(KC_TAB)
+#define KC_SHEQ SH_T(KC_EQL)
 
 #define KC_LSGR MT(MOD_LSFT, KC_GRV)
 #define KC_RSMI MT(MOD_RSFT, KC_MINS)
@@ -73,7 +75,7 @@ enum layers {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT_kc(
   //,----+----+----+----+----+----.                        ,----+----+----+----+----+----.
-     TAB , Q  , W  , E  , R  , T  ,                          Y  , U  , I  , O  , P  ,EQL ,
+     SHTA, Q  , W  , E  , R  , T  ,                          Y  , U  , I  , O  , P  ,SHEQ,
   //|----+----+----+----+----+----|                        |----+----+----+----+----+----|
      LSBS, A  , S  , D  , F  , G  ,                          H  , J  , K  , L  ,SCLN,RSQU,
   //|----+----+----+----+----+----+----+----|    |----+----+----+----+----+----+----+----|
@@ -88,7 +90,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|                        |----+----+----+----+----+----|
      LSGR,EXLM, AT ,HASH,DLR ,PERC,                         CIRC,AMPR,ASTR,LPRN,RPRN,RSMI,
   //|----+----+----+----+----+----+----+----|    |----+----+----+----+----+----+----+----|
-     LCDE,    ,    ,    ,    ,    ,LSC ,LSCA,     RSCA,RSC ,    ,LCBR,RCBR,LBRC,RBRC,RCTL,
+     LCTL,    ,    ,    ,    ,    ,LSC ,LSCA,     RSCA,RSC ,    ,LCBR,RCBR,LBRC,RBRC,RCTL,
   //`----+----+----+----+----+----+----+----|    |----+----+----+----+----+----+----+----'
                     LGUI,RAIS,LALT,    ,LCA ,     RCA ,    ,RALT,RAIS,APP
   //               `----+----+----+----+----'    `----+----+----+----+----'
@@ -115,6 +117,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                     LGUI,    ,LALT,    ,LCA ,     RCA ,    ,RAIS,    ,APP
   //               `----+----+----+----+----'    `----+----+----+----+----'
     ),
+};
+
+const keypos_t hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = {
+  {{0, 4}, {1, 4}, {2, 4}, {3, 4}, {4, 4}, {5, 4}, {6, 4}, {7, 4}},
+  {{0, 5}, {1, 5}, {2, 5}, {3, 5}, {4, 5}, {5, 5}, {6, 5}, {7, 5}},
+  {{0, 6}, {1, 6}, {2, 6}, {3, 6}, {4, 6}, {5, 6}, {6, 6}, {7, 6}},
+  {{0, 7}, {1, 7}, {2, 7}, {3, 7}, {4, 7}, {5, 7}, {6, 7}, {7, 7}},
+  {{0, 0}, {1, 0}, {2, 0}, {3, 0}, {4, 0}, {5, 0}, {6, 0}, {7, 0}},
+  {{0, 1}, {1, 1}, {2, 1}, {3, 1}, {4, 1}, {5, 1}, {6, 1}, {7, 1}},
+  {{0, 2}, {1, 2}, {2, 2}, {3, 2}, {4, 2}, {5, 2}, {6, 2}, {7, 2}},
+  {{0, 3}, {1, 3}, {2, 3}, {3, 3}, {4, 3}, {5, 3}, {6, 3}, {7, 3}},
 };
 
 layer_state_t layer_state_set_user(layer_state_t state) {
