@@ -81,7 +81,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----+----+----|    |----+----+----+----+----+----+----+----|
      LCES, Z  , X  , C  , V  , B  ,SCIN,MEHO,     MEEN,SCDE, N  , M  ,COMM,DOT ,SLSH,RCBS,
   //`----+----+----+----+----+----+----+----|    |----+----+----+----+----+----+----+----'
-                    LGUI,RALE,LARI,LOSP,CAPU,     CAPD,LOEN,RAUP,RADN,APP
+                    LGUI,RALE,LARI,LOSP,CAPU,     CAPD,LOEN,RADN,RAUP,APP
   //               `----+----+----+----+----'    `----+----+----+----+----'
     ),
     [_LOWER] = LAYOUT_kc(
@@ -184,7 +184,7 @@ static void render_layout_right(void) {
             oled_write_P(PSTR("    Y U I O P +  \n"), false);
             oled_write_P(PSTR("    H J K L ;:'\" \n"), false);
             oled_write_P(PSTR("PDDeN M ,<.>/?\\| \n"), false);
-            oled_write_P(PSTR("EdEtUpDnWi"), false);
+            oled_write_P(PSTR("EdEtDnUpWi"), false);
             break;
         case _LOWER:
             oled_write_P(PSTR("    6 7 8 9 0 _  \n"), false);
