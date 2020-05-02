@@ -18,6 +18,7 @@
 
 enum layers {
     _QWERTY = 0,
+    _GAMING,
     _LOWER,
     _RAISE,
     _ADJUST
@@ -71,6 +72,8 @@ enum layers {
 #define KC_RVAD RGB_VAD
 #define KC_RMD  RGB_MOD
 #define KC_RRMD RGB_RMOD
+#define KC_QWER DF(_QWERTY)
+#define KC_GAMI DF(_GAMING)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT_kc(
@@ -82,6 +85,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      LCES, Z  , X  , C  , V  , B  ,SCIN,MEHO,     MEEN,SCDE, N  , M  ,COMM,DOT ,SLSH,RCBS,
   //`----+----+----+----+----+----+----+----|    |----+----+----+----+----+----+----+----'
                     LGUI,RALE,LARI,LOSP,CAPU,     CAPD,LOEN,RADN,RAUP,APP
+  //               `----+----+----+----+----'    `----+----+----+----+----'
+    ),
+    [_GAMING] = LAYOUT_kc(
+  //,----+----+----+----+----+----.                        ,----+----+----+----+----+----.
+     RAIS,TAB , Q  , W  , E  , R  ,                          Y  , U  , I  , O  , P  ,SHEQ,
+  //|----+----+----+----+----+----|                        |----+----+----+----+----+----|
+     BSPC,LSFT, A  , S  , D  , F  ,                          H  , J  , K  , L  ,SCLN,RSQU,
+  //|----+----+----+----+----+----+----+----|    |----+----+----+----+----+----+----+----|
+     ESC ,LCTL, Z  , X  , C  , V  , T  , G  ,     MEEN,SCDE, N  , M  ,COMM,DOT ,SLSH,RCBS,
+  //`----+----+----+----+----+----+----+----|    |----+----+----+----+----+----+----+----'
+                    LGUI,LALT ,LWR ,SPC , B  ,     CAPD,LOEN,RADN,RAUP,APP
   //               `----+----+----+----+----'    `----+----+----+----+----'
     ),
     [_LOWER] = LAYOUT_kc(
@@ -110,9 +124,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,----+----+----+----+----+----.                        ,----+----+----+----+----+----.
       F1 , F2 , F3 , F4 , F5 , F6 ,                          F7 , F8 , F9 ,F10 ,F11 ,F12 ,
   //|----+----+----+----+----+----|                        |----+----+----+----+----+----|
-     LSFT,RTOG,RSAI,RHUI,RVAI,RMD ,                             ,    ,    ,    ,    ,RSFT,
+     LSFT,RTOG,RSAI,RHUI,RVAI,RMD ,                             ,    ,    ,    ,QWER,RSFT,
   //|----+----+----+----+----+----+----+----|    |----+----+----+----+----+----+----+----|
-     LCTL,    ,RSAD,RHUD,RVAD,RRMD,LSC ,LSCA,     RSCA,RSC ,    ,    ,    ,    ,    ,RCTL,
+     LCTL,    ,RSAD,RHUD,RVAD,RRMD,LSC ,LSCA,     RSCA,RSC ,    ,    ,    ,    ,GAMI,RCTL,
   //`----+----+----+----+----+----+----+----|    |----+----+----+----+----+----+----+----'
                     LGUI,    ,LALT,    ,LCA ,     RCA ,    ,RAIS,    ,APP
   //               `----+----+----+----+----'    `----+----+----+----+----'
