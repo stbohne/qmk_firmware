@@ -48,8 +48,8 @@ enum layers {
 #define KC_SCDE MT(MOD_RSFT | MOD_RCTL, KC_DEL)
 #define KC_CAPD MT(MOD_RCTL | MOD_RALT, KC_PGDN)
 #define KC_LOEN LT(_LOWER, KC_ENT)
-#define KC_RAUP MT(MOD_RALT, KC_UP)
-#define KC_RADN LT(_RAISE, KC_DOWN)
+#define KC_RAUP LT(_RAISE,KC_UP)
+#define KC_RADN MT(MOD_RALT, KC_DOWN)
 
 #define KC_LWR MO(_LOWER)
 #define KC_RAIS MO(_RAISE)
@@ -95,7 +95,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----+----+----|    |----+----+----+----+----+----+----+----|
      ESC ,LCTL, Z  , X  , C  , V  , T  , G  ,     MEEN,SCDE, N  , M  ,COMM,DOT ,SLSH,RCBS,
   //`----+----+----+----+----+----+----+----|    |----+----+----+----+----+----+----+----'
-                    LGUI,LALT ,LWR ,SPC , B  ,     CAPD,LOEN,RADN,RAUP,APP
+                    LGUI,LALT,LWR ,SPC , B  ,     CAPD,LOEN,RADN,RAUP,APP
   //               `----+----+----+----+----'    `----+----+----+----+----'
     ),
     [_LOWER] = LAYOUT_kc(
@@ -111,24 +111,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_RAISE] = LAYOUT_kc(
   //,----+----+----+----+----+----.                        ,----+----+----+----+----+----.
-         ,    ,BTN2,MS_U,BTN1,WH_U,                         PGUP,HOME, UP ,END ,    ,    ,
+      F1 , F2 , F3 , F4 , F5 , F6 ,                          F7 , F8 , F9 ,F10 ,F11 ,F12 ,
   //|----+----+----+----+----+----|                        |----+----+----+----+----+----|
-     LSFT,BTN3,MS_L,MS_D,MS_R,WH_D,                         PGDN,LEFT,DOWN,RGHT,    ,RSFT,
+     LSFT,RTOG,RSAI,RHUI,RVAI,RMD ,                         VOLU,    ,    ,    ,QWER,RSFT,
   //|----+----+----+----+----+----+----+----|    |----+----+----+----+----+----+----+----|
-     LCTL,    ,    ,    ,    ,    ,LSC ,LSCA,     RSCA,RSC ,    ,ACL2,ACL1,ACL0,    ,RCTL,
+     LCTL,    ,RSAD,RHUD,RVAD,RRMD,LSC ,LSCA,     RSCA,RSC ,VOLD,    ,    ,    ,GAMI,RCTL,
   //`----+----+----+----+----+----+----+----|    |----+----+----+----+----+----+----+----'
                     LGUI,    ,LALT,LWR ,LCA ,     RCA ,LWR ,RALT,    ,APP
   //               `----+----+----+----+----'    `----+----+----+----+----'
     ),
     [_ADJUST] = LAYOUT_kc(
   //,----+----+----+----+----+----.                        ,----+----+----+----+----+----.
-      F1 , F2 , F3 , F4 , F5 , F6 ,                          F7 , F8 , F9 ,F10 ,F11 ,F12 ,
+         ,    ,BTN2,MS_U,BTN1,WH_U,                         PGUP,HOME, UP ,END ,    ,    ,
   //|----+----+----+----+----+----|                        |----+----+----+----+----+----|
-     LSFT,RTOG,RSAI,RHUI,RVAI,RMD ,                             ,    ,    ,    ,QWER,RSFT,
+     LSFT,BTN3,MS_L,MS_D,MS_R,WH_D,                         PGDN,LEFT,DOWN,RGHT,    ,RSFT,
   //|----+----+----+----+----+----+----+----|    |----+----+----+----+----+----+----+----|
-     LCTL,    ,RSAD,RHUD,RVAD,RRMD,LSC ,LSCA,     RSCA,RSC ,    ,    ,    ,    ,GAMI,RCTL,
+     LCTL,    ,    ,    ,    ,    ,LSC ,LSCA,     RSCA,RSC ,    ,ACL2,ACL1,ACL0,    ,RCTL,
   //`----+----+----+----+----+----+----+----|    |----+----+----+----+----+----+----+----'
-                    LGUI,    ,LALT,    ,LCA ,     RCA ,    ,RAIS,    ,APP
+                    LGUI,    ,LALT,    ,LCA ,     RCA ,    ,RALT,    ,APP
   //               `----+----+----+----+----'    `----+----+----+----+----'
     ),
 };
