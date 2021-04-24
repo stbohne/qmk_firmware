@@ -82,20 +82,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|                        |----+----+----+----+----+----|
      LSBS, A  , S  , D  , F  , G  ,                          H  , J  , K  , L  ,SCLN,RSQU,
   //|----+----+----+----+----+----+----+----|    |----+----+----+----+----+----+----+----|
-     LCES, Z  , X  , C  , V  , B  ,SCIN,MEHO,     MEEN,SCDE, N  , M  ,COMM,DOT ,SLSH,RCBS,
+     LCES, Z  , X  , C  , V  , B  ,HOME,END ,     PGUP,INS , N  , M  ,COMM,DOT ,SLSH,RCBS,
   //`----+----+----+----+----+----+----+----|    |----+----+----+----+----+----+----+----'
-                    LGUI,RALE,LARI,LOSP,CAPU,     CAPD,LOEN,RADN,RAUP,APP
+                    LGUI,RALE,LARI,LOSP,DEL ,     PGDN,LOEN,RADN,RAUP,APP
   //               `----+----+----+----+----'    `----+----+----+----+----'
     ),
     [_GAMING] = LAYOUT_kc(
   //,----+----+----+----+----+----.                        ,----+----+----+----+----+----.
-     RAIS,TAB , Q  , W  , E  , R  ,                          Y  , U  , I  , O  , P  ,SHEQ,
+      B  ,TAB , Q  , W  , E  , R  ,                          Y  , U  , I  , O  , P  ,SHEQ,
   //|----+----+----+----+----+----|                        |----+----+----+----+----+----|
-     BSPC,LSFT, A  , S  , D  , F  ,                          H  , J  , K  , L  ,SCLN,RSQU,
+     ENT ,LSFT, A  , S  , D  , F  ,                          H  , J  , K  , L  ,SCLN,RSQU,
   //|----+----+----+----+----+----+----+----|    |----+----+----+----+----+----+----+----|
-     ESC ,LCTL, Z  , X  , C  , V  , T  , G  ,     MEEN,SCDE, N  , M  ,COMM,DOT ,SLSH,RCBS,
+     ESC ,LCTL, Z  , X  , C  , V  , T  , G  ,     PGUP,INS , N  , M  ,COMM,DOT ,SLSH,RCBS,
   //`----+----+----+----+----+----+----+----|    |----+----+----+----+----+----+----+----'
-                    LGUI,LALT,LWR ,SPC , B  ,     CAPD,LOEN,RADN,RAUP,APP
+                    LGUI,RAIS,LALT,SPC ,LWR ,     PGDN,LOEN,RADN,RAUP,APP
   //               `----+----+----+----+----'    `----+----+----+----+----'
     ),
     [_LOWER] = LAYOUT_kc(
@@ -113,9 +113,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,----+----+----+----+----+----.                        ,----+----+----+----+----+----.
       F1 , F2 , F3 , F4 , F5 , F6 ,                          F7 , F8 , F9 ,F10 ,F11 ,F12 ,
   //|----+----+----+----+----+----|                        |----+----+----+----+----+----|
-     LSFT,RTOG,RSAI,RHUI,RVAI,RMD ,                         VOLU,    ,    ,    ,QWER,RSFT,
+     LSFT,    ,    ,    ,    ,VOLU,                         RMD ,RVAI,RHUI,RSAI,RTOG,RSFT,
   //|----+----+----+----+----+----+----+----|    |----+----+----+----+----+----+----+----|
-     LCTL,    ,RSAD,RHUD,RVAD,RRMD,LSC ,LSCA,     RSCA,RSC ,VOLD,    ,    ,    ,GAMI,RCTL,
+     LCTL,    ,    ,GAMI,QWER,VOLD,LSC ,LSCA,     RSCA,RSC ,RRMD,RVAD,RHUD,RSAD,    ,RCTL,
   //`----+----+----+----+----+----+----+----|    |----+----+----+----+----+----+----+----'
                     LGUI,    ,LALT,LWR ,LCA ,     RCA ,LWR ,RALT,    ,APP
   //               `----+----+----+----+----'    `----+----+----+----+----'

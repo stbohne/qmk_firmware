@@ -32,3 +32,5 @@
 // #define NO_USB_STARTUP_CHECK
 
 #define EE_HANDS 1
+#define TAPPING_TERM 150
+#define PERMISSIVE_HOLD 1
