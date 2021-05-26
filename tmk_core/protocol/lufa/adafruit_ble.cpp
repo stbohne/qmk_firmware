@@ -456,8 +456,10 @@ bool adafruit_ble_enable_keyboard(void) {
 
     // Turn down the power level a bit
     static const char  kPower[] PROGMEM             = "AT+BLEPOWERLEVEL=-12";
+    // Turn off mode led
+    static const char kModeLED[] PROGMEM = "AT+HWMODELED=0";
     static PGM_P const configure_commands[] PROGMEM = {
-        kEcho, kGapIntervals, kGapDevName, kHidEnOn, kPower, kATZ,
+        kEcho, kGapIntervals, kGapDevName, kHidEnOn, kPower, kModeLED, kATZ,
     };
 
     uint8_t i;
